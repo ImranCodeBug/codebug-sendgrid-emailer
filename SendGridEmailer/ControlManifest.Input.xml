@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <control namespace="Codebug" constructor="SendGridEmailer" version="0.0.2" display-name-key="SendGrid Emailer" description-key="Send transactional email via SendGrid from Power Apps." control-type="standard" preview-image="img/preview.png">
+    <property name="Email" display-name-key="Email" description-key="Recipient Email Address" of-type="SingleLine.Email" usage="bound" required="true" />
+    <resources>
+      <code path="index.ts" order="1" />
+      <css path="../node_modules/bootstrap/dist/css/bootstrap.min.css" order="1" />
+    </resources>
+    <property name="ApiKey" display-name-key="ApiKey" description-key="Send Grid Api Key" usage="input" required="true" of-type="SingleLine.Text" />
+  </control>
+</manifest>
