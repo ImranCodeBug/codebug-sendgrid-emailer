@@ -1,7 +1,8 @@
 import * as React from 'react'
+import { templateModel } from '../Models/TemplateModel'
 
 interface Props {
-
+    templateModel : templateModel
 }
 
 const TemplateDetailsComponent = (props: Props) => {
@@ -12,7 +13,7 @@ const TemplateDetailsComponent = (props: Props) => {
                     <label>Name</label>
                 </div>
                 <div className='col'>
-                    <input type="text" className='w-100 border rounded' placeholder="Name" aria-label="Name" aria-describedby="Name" disabled />
+                    <input type="text" className='w-100 border rounded' placeholder="Name" aria-label="Name" aria-describedby="Name" disabled value={props.templateModel.name} />
                 </div>
             </div>
 
@@ -21,7 +22,7 @@ const TemplateDetailsComponent = (props: Props) => {
                     <label>Updated At</label>
                 </div>
                 <div className='col'>
-                    <input type="text" className='w-100 border rounded' placeholder="UpdatedAt" aria-label="UpdatedAt" aria-describedby="UpdatedAt" disabled />
+                    <input type="text" className='w-100 border rounded' placeholder="UpdatedAt" aria-label="UpdatedAt" aria-describedby="UpdatedAt" disabled value={props.templateModel.updatedAt} />
                 </div>
             </div>
 

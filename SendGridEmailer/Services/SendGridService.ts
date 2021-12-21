@@ -12,6 +12,8 @@ export const searchByTemplateId = async (templateId: string, apiKey: string) => 
         .catch(error => console.error('Error occurred'));
 
     console.log(response);
+
+    return response;
 }
 
 const convertSuccessResponseToTemplateModel = (response: any) => {
