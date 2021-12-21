@@ -1,28 +1,24 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import { Tab, Tabs } from 'react-bootstrap'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-
+import { SearchTemplateComponent } from './SearchTemplateComponent'
 
 interface Props {
     emailAddressText: string
-    apiKey: string
+    apiKey: string,
+    searchByTemplateId: (templateId: string) => void,
+    templateSearchingInProgress: boolean
 }
 
 
 {/* <i class="fas fa-search"></i> */ }
 export const TabContainerComponent = (props: Props) => {
-    return (
-        <Tabs defaultActiveKey="email" id="uncontrolled-tab-example" className="mb-3">
-            <Tab eventKey="email" title="Email">
-                <div className='d-flex'>
-                    <div className='flex-row input-group'>
-                        <span className="input-group-text"><FontAwesomeIcon className='text-secondary' icon={faSearch} /></span>
-                        <input type="text" className="form-control" placeholder="Template Id" aria-label="Template Id" aria-describedby="template-search" />
-                        <button className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-                    </div>
-                </div>
 
+
+    return (
+        <Tabs defaultActiveKey="search" id="uncontrolled-tab-example" className="mb-3">
+            <Tab eventKey="search" title="Search">
+                <SearchTemplateComponent searchByTemplateId={props.searchByTemplateId}
+                    templateSearchingInProgress={props.templateSearchingInProgress}></SearchTemplateComponent>
                 <div className='row mx-2 mt-2'>
                     <div className='col-2 pt-1 text-start'>
                         <label>Name</label>
@@ -49,12 +45,9 @@ export const TabContainerComponent = (props: Props) => {
                         <input type="text" className='w-100 border rounded' placeholder="TestData" aria-label="TestData" aria-describedby="TestData" />
                     </div>
                 </div>
-
-
-
             </Tab>
-            <Tab eventKey="templateDetails" title="Template Details">
-            <div className='row mx-2 mt-2'>
+            <Tab eventKey="data" title="Dynamic Data">
+                <div className='row mx-2 mt-2'>
                     <div className='col-2 pt-1 text-start'>
                         <label>Updated At</label>
                     </div>
@@ -80,6 +73,9 @@ export const TabContainerComponent = (props: Props) => {
                         <input type="text" className='w-100 border rounded' placeholder="Thumbnail" aria-label="Thumbnail" aria-describedby="Thumbnail" disabled />
                     </div>
                 </div>
+            </Tab>
+
+            <Tab eventKey="send" title="Send Email">
 
             </Tab>
         </Tabs>
