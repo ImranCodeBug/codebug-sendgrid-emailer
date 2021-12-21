@@ -2,13 +2,10 @@ import * as React from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { materialLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { NotificationComponent, notificationType } from './NotificationComponent';
 
 interface Props {
-    codeString: string
-}
-
-const customStyle = {
-
+    codeString?: string
 }
 
 const TemplateContentComponent = (props: Props) => {
@@ -24,6 +21,8 @@ const TemplateContentComponent = (props: Props) => {
                 <label>Content</label>
             </div>
             <div className='col text-start'>
+                {props.codeString ? 
+                <>
                 <a href="#" onClick={handleShow} className="link-secondary">
                     Click to view (opens a modal)
                 </a>
@@ -43,10 +42,10 @@ const TemplateContentComponent = (props: Props) => {
                         </Button>
                     </Modal.Footer>
                 </Modal>
+                </>
+                : <NotificationComponent notificationText='The email content cannot be loaded' notificationType={notificationType.Error} ></NotificationComponent>}
             </div>
         </div>
-
-
     )
 }
 
