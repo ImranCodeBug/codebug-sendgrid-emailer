@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { templateModel } from '../Models/TemplateModel'
+import TemplateContentComponent from './TemplateContentComponent'
 
 interface Props {
     templateModel : templateModel
@@ -26,23 +27,20 @@ const TemplateDetailsComponent = (props: Props) => {
                 </div>
             </div>
 
-            <div className='row mx-2 mt-2'>
-                <div className='col-2 pt-1 text-start'>
-                    <label>Content</label>
-                </div>
-                <div className='col'>
-                    <input type="text" className='w-100 border rounded' placeholder="Content" aria-label="Content" aria-describedby="Content" disabled />
-                </div>
-            </div>
+            {props.templateModel.htmlContent ? 
+                <TemplateContentComponent codeString={props.templateModel.htmlContent!}></TemplateContentComponent>
+            :null}
 
+            {props.templateModel.thumbnailUrl? 
             <div className='row mx-2 mt-2'>
                 <div className='col-2 pt-1 text-start'>
                     <label>Thumbnail</label>
                 </div>
                 <div className='col'>
-                    <input type="text" className='w-100 border rounded' placeholder="Thumbnail" aria-label="Thumbnail" aria-describedby="Thumbnail" disabled />
+                    <img src={props.templateModel.thumbnailUrl!} />
                 </div>
             </div>
+            :null}
 
 
         </div>

@@ -26,8 +26,6 @@ export const TabContainerComponent = (props: Props) => {
                     {props.templateModel ? 
                         <TemplateDetailsComponent templateModel={props.templateModel!}></TemplateDetailsComponent> 
                     :null}
-                
-
             </Tab>
             <Tab eventKey="data" title="Dynamic Data" disabled={props.templateModel === null}>
 
