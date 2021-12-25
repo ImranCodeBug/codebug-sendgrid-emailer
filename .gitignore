@@ -13,3 +13,9 @@
 /bin
 /obj
 **/Solution
+/CodeBug.SendGridEmailer.Process/.vs/CodeBug.SendGridEmailer.Process/v16
+/CodeBug.SendGridEmailer.Process/CodeBug.SendGridEmailer.Process/bin/Debug
+/CodeBug.SendGridEmailer.Process/CodeBug.SendGridEmailer.Process/obj/Debug
+/CodeBug.SendGridEmailer.Process/CodeBug.SendGridEmailer.Process.Tests/bin/Debug
+/CodeBug.SendGridEmailer.Process/CodeBug.SendGridEmailer.Process.Tests/obj/Debug
+/CodeBug.SendGridEmailer.Process/packages
