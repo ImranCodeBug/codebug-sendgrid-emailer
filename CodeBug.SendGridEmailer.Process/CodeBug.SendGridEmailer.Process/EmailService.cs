@@ -35,7 +35,7 @@ namespace CodeBug.SendGridEmailer.Process
 
                 var resposne = await httpClient.PostAsync(SendGirdV3EndPoint, new StringContent(messageBody, Encoding.UTF8, "application/json"));
                 
-                emailResponse.HttpStatusCode = resposne.StatusCode;
+                emailResponse.HttpStatusCode = (int)resposne.StatusCode;
 
                 if (!resposne.IsSuccessStatusCode)
                 {

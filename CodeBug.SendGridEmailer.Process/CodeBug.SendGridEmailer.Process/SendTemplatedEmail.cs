@@ -9,7 +9,7 @@ namespace CodeBug.SendGridEmailer.Process
         [RequiredArgument][Input("Api Key")] public InArgument<string> ApiKey { get; set; }
         [RequiredArgument] [Input("Message Body")] public InArgument<string> MessageBody { get; set; }
 
-        [Output("HttpStatusCode")] public OutArgument<string> StatusCode { get; set; }
+        [Output("HttpStatusCode")] public OutArgument<int> StatusCode { get; set; }
         [Output("ErrorText")] public OutArgument<string> ErrorText { get; set; }
         protected override void Execute(CodeActivityContext context)
         {
@@ -22,6 +22,12 @@ namespace CodeBug.SendGridEmailer.Process
             var emailService = new EmailService(tracingService, apiKey);
 
             var response = emailService.SendEmail(messageBody).Result;
+            StatusCode.Set(context, response.HttpStatusCode);
+
+            if (!string.IsNullOrEmpty(response.ErrorDetails)) {
+                ErrorText.Set(context, response.ErrorDetails);
+            }
+
             tracingService.Trace(response.ToString());
         }
     }
