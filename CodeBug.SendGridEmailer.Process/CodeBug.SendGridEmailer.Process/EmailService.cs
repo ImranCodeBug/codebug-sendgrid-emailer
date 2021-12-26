@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Xrm.Sdk;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xrm.Sdk;
 
 namespace CodeBug.SendGridEmailer.Process
 {
@@ -32,10 +30,11 @@ namespace CodeBug.SendGridEmailer.Process
                 httpClient.DefaultRequestHeaders
                         .Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-
                 var resposne = await httpClient.PostAsync(SendGirdV3EndPoint, new StringContent(messageBody, Encoding.UTF8, "application/json"));
                 
                 emailResponse.HttpStatusCode = (int)resposne.StatusCode;
+
+                _tracingService.Trace($"Execution complete. The status code from Sendgrid is {resposne.StatusCode}");
 
                 if (!resposne.IsSuccessStatusCode)
                 {

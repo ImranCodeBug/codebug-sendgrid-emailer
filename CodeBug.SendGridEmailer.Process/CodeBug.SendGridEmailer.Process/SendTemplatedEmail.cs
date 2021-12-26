@@ -28,7 +28,7 @@ namespace CodeBug.SendGridEmailer.Process
                 ErrorText.Set(context, response.ErrorDetails);
             }
 
-            tracingService.Trace(response.ToString());
+            tracingService.Trace("Completing the code activity");
         }
     }
 
