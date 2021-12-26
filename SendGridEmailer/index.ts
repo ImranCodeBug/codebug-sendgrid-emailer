@@ -59,6 +59,6 @@ export class SendGridEmailer implements ComponentFramework.StandardControl<IInpu
 	 */
 	public destroy(): void
 	{
-		// Add code to cleanup control if necessary
+		ReactDom.unmountComponentAtNode(this._rootContainer);
 	}
 }
