@@ -2,13 +2,13 @@ import * as React from 'react'
 import { sendGridTestData } from '../Models/TemplateModel'
 
 interface Props {
-    key : string,
     dataElement: sendGridTestData
     defaultValue? : string
     setDynamicTemplateData : (item : sendGridTestData) => void
+    
 }
 
-export const DynamicDataItemComponent = (props: Props) => {
+export const SubjectComponent = (props: Props) => {
     const dataItemValue = React.useRef<HTMLInputElement>(null);
 
     const itemValueOnBlur = () => {

@@ -15,6 +15,7 @@ export const MainComponent = (props: Props) => {
     const [templateSearchingInProgress, setTemplateSearchingInProgress] = React.useState(false);
     const [templateModel, setTemplateModel] = React.useState<templateModel | null>(null);
     const [selectedDynamicTemplate, setSelectedDynamicTemplate] = React.useState<sendGridTestData[]>([]);
+    const [subject, setSubject] = React.useState<string | null>(null);
 
     React.useEffect(() => {
         if(templateModel?.testData){
@@ -29,6 +30,10 @@ export const MainComponent = (props: Props) => {
         itemToBeChanged!.exampleValue = templateData.exampleValue;
 
         setSelectedDynamicTemplate(templatesToBeSaved);
+    }
+
+    const updateSubjectState = (templateData : sendGridTestData) => {
+        setSubject(templateData.exampleValue!)
     }
 
 
@@ -47,7 +52,8 @@ export const MainComponent = (props: Props) => {
                 searchByTemplateId={searchTemplateWithId} 
                 templateSearchingInProgress={templateSearchingInProgress}
                 templateModel={templateModel}
-                setTemplateData={setTemplateData}></TabContainerComponent>            
+                setTemplateData={setTemplateData}
+                updateSubject={updateSubjectState}></TabContainerComponent>            
         </div>
     )
 }

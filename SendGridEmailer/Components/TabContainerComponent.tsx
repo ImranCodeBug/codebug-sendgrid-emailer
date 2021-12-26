@@ -12,7 +12,8 @@ interface Props {
     searchByTemplateId: (templateId: string) => void,
     templateSearchingInProgress: boolean    
     templateModel : templateModel | null
-    setTemplateData : (items : sendGridTestData) => void
+    setTemplateData : (items : sendGridTestData) => void,
+    updateSubject : (items : sendGridTestData) =>void,
 }
 
 export const TabContainerComponent = (props: Props) => {
@@ -31,7 +32,8 @@ export const TabContainerComponent = (props: Props) => {
                     {props.templateModel? 
                         <DynamicDataContainer subject={props.templateModel!.subject!} 
                         substitution={props.templateModel!.testData}
-                        setDynamicTemplateData={props.setTemplateData}></DynamicDataContainer>
+                        setDynamicTemplateData={props.setTemplateData}
+                        updateSubject={props.updateSubject}></DynamicDataContainer>
                     :null}
             </Tab>
 

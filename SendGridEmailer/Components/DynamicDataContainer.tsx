@@ -1,11 +1,13 @@
 import * as React from 'react'
 import { sendGridTestData } from '../Models/TemplateModel'
 import { DynamicDataItemComponent } from './DynamicDataItemComponent'
+import { SubjectComponent } from './SubjectComponent'
 
 interface Props {    
     subject : string,
     substitution? : sendGridTestData[]
-    setDynamicTemplateData : (items : sendGridTestData) =>void
+    setDynamicTemplateData : (items : sendGridTestData) =>void,
+    updateSubject : (items : sendGridTestData) =>void,
 }
 
 export const DynamicDataContainer = (props: Props) => {
@@ -15,10 +17,10 @@ export const DynamicDataContainer = (props: Props) => {
     }
     return (        
         <>
-        <DynamicDataItemComponent key="Subject" 
+        <SubjectComponent  
         dataElement={subjectItem} defaultValue={props.subject}
-        setDynamicTemplateData={props.setDynamicTemplateData}></DynamicDataItemComponent>
-
+        setDynamicTemplateData={props.updateSubject}></SubjectComponent>
+        
         {props.substitution? 
             props.substitution!.map(t =>
                 <DynamicDataItemComponent key={t.substitutionKey} dataElement={t} 
