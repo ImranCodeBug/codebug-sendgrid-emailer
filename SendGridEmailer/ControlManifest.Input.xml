@@ -5,8 +5,9 @@
     <resources>
       <code path="index.ts" order="1" />
       <css path="../node_modules/bootstrap/dist/css/bootstrap.min.css" order="1" />
-      <css path="Styles/style.css" order="2" />      
+      <css path="Styles/style.css" order="2" />
     </resources>
     <property name="ApiKey" display-name-key="ApiKey" description-key="Send Grid Api Key" usage="input" required="true" of-type="SingleLine.Text" />
+    <property name="DynamicsUrl" display-name-key="OrganizationUrl" description-key="URL for the dynamics 365 organization in the form of https://YOURORG.crm[x].dynamics.com" usage="input" required="true" of-type="SingleLine.Text" />
   </control>
 </manifest>
