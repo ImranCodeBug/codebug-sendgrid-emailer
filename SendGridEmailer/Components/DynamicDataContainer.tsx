@@ -5,7 +5,7 @@ import { DynamicDataItemComponent } from './DynamicDataItemComponent'
 interface Props {    
     subject : string,
     substitution? : sendGridTestData[]
-    
+    setDynamicTemplateData : (items : sendGridTestData) =>void
 }
 
 export const DynamicDataContainer = (props: Props) => {
@@ -15,11 +15,14 @@ export const DynamicDataContainer = (props: Props) => {
     }
     return (        
         <>
-        <DynamicDataItemComponent key="Subject" dataElement={subjectItem} defaultValue={props.subject}></DynamicDataItemComponent>
+        <DynamicDataItemComponent key="Subject" 
+        dataElement={subjectItem} defaultValue={props.subject}
+        setDynamicTemplateData={props.setDynamicTemplateData}></DynamicDataItemComponent>
 
         {props.substitution? 
             props.substitution!.map(t =>
-                <DynamicDataItemComponent key={t.substitutionKey} dataElement={t}></DynamicDataItemComponent>
+                <DynamicDataItemComponent key={t.substitutionKey} dataElement={t} 
+                setDynamicTemplateData={props.setDynamicTemplateData}></DynamicDataItemComponent>
             )
         :null}
         </>

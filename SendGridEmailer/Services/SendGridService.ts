@@ -10,9 +10,7 @@ export const searchByTemplateId = async (templateId: string, apiKey: string) => 
             return convertSuccessResponseToTemplateModel(response);
         })
         .catch(error => console.error('Error occurred'));
-
-    console.log(response);
-
+    
     return response;
 }
 

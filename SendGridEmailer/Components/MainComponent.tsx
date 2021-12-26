@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { templateModel } from '../Models/TemplateModel'
+import { sendGridTestData, templateModel } from '../Models/TemplateModel'
 import { searchByTemplateId } from '../Services/SendGridService'
 import { isTemplateModel } from '../Services/UtilService'
 import EmailAddressComponent from './EmailAddressComponent'
 import { TabContainerComponent } from './TabContainerComponent'
+import * as _ from 'lodash'
 
 interface Props {
     emailAddressText : string
@@ -13,6 +14,23 @@ interface Props {
 export const MainComponent = (props: Props) => {
     const [templateSearchingInProgress, setTemplateSearchingInProgress] = React.useState(false);
     const [templateModel, setTemplateModel] = React.useState<templateModel | null>(null);
+    const [selectedDynamicTemplate, setSelectedDynamicTemplate] = React.useState<sendGridTestData[]>([]);
+
+    React.useEffect(() => {
+        if(templateModel?.testData){
+            setSelectedDynamicTemplate(templateModel.testData!)
+        }
+    },[templateModel])
+
+    const setTemplateData = (templateData : sendGridTestData) => {
+        const templatesToBeSaved = _.cloneDeep(selectedDynamicTemplate);
+        const itemToBeChanged = _.find(templatesToBeSaved, {'substitutionKey' : templateData.substitutionKey});
+        
+        itemToBeChanged!.exampleValue = templateData.exampleValue;
+
+        setSelectedDynamicTemplate(templatesToBeSaved);
+    }
+
 
     const searchTemplateWithId = async(templateId : string) => {
         setTemplateSearchingInProgress(true);        
@@ -28,7 +46,8 @@ export const MainComponent = (props: Props) => {
             <TabContainerComponent emailAddressText={props.emailAddressText} apiKey={props.apiKeyText} 
                 searchByTemplateId={searchTemplateWithId} 
                 templateSearchingInProgress={templateSearchingInProgress}
-                templateModel={templateModel}></TabContainerComponent>            
+                templateModel={templateModel}
+                setTemplateData={setTemplateData}></TabContainerComponent>            
         </div>
     )
 }
