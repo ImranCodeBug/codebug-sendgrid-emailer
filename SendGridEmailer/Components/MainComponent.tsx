@@ -41,7 +41,9 @@ export const MainComponent = (props: Props) => {
         setTemplateSearchingInProgress(true);        
         const response = await searchByTemplateId(templateId, props.apiKeyText);
         if(isTemplateModel(response)){
-            setTemplateModel(response as templateModel);
+            const result = response as templateModel
+            setTemplateModel(result);
+            setSubject(result.subject ?? null)
         }
         setTemplateSearchingInProgress(false);
     }
@@ -53,7 +55,9 @@ export const MainComponent = (props: Props) => {
                 templateSearchingInProgress={templateSearchingInProgress}
                 templateModel={templateModel}
                 setTemplateData={setTemplateData}
-                updateSubject={updateSubjectState}></TabContainerComponent>            
+                updateSubject={updateSubjectState}
+                subject={subject}
+                ></TabContainerComponent>            
         </div>
     )
 }

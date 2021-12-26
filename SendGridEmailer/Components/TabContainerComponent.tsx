@@ -5,6 +5,7 @@ import { DynamicDataContainer } from './DynamicDataContainer'
 import { SearchTemplateComponent } from './SearchTemplateComponent'
 import TemplateDetailsComponent from './TemplateDetailsComponent'
 import * as _ from 'lodash'
+import { EmailSummary } from './EmailSummary'
 
 interface Props {
     emailAddressText: string
@@ -14,6 +15,7 @@ interface Props {
     templateModel : templateModel | null
     setTemplateData : (items : sendGridTestData) => void,
     updateSubject : (items : sendGridTestData) =>void,
+    subject : string | null
 }
 
 export const TabContainerComponent = (props: Props) => {
@@ -38,7 +40,7 @@ export const TabContainerComponent = (props: Props) => {
             </Tab>
 
             <Tab eventKey="send" title="Send Email" disabled={props.templateModel === null}>
-
+                <EmailSummary emailAddress={props.emailAddressText} subject={props.subject}></EmailSummary>
             </Tab>
         </Tabs>
     )
