@@ -12,9 +12,9 @@ export const DynamicDataItemComponent = (props: Props) => {
     const dataItemValue = React.useRef<HTMLInputElement>(null);
 
     const itemValueOnBlur = () => {
-        const currentValue = dataItemValue.current?.value;
+        const currentValue = dataItemValue.current?.value ?? null;
         const dataItem = {
-            substitutionKey : props.key,
+            substitutionKey : props.dataElement.substitutionKey,
             exampleValue : currentValue
         }
         props.setDynamicTemplateData(dataItem);

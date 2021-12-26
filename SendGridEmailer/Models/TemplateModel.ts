@@ -10,5 +10,5 @@ export type templateModel = {
 
 export type sendGridTestData = {
     substitutionKey : string,
-    exampleValue : string | undefined | null
+    exampleValue : string | null | undefined
 }

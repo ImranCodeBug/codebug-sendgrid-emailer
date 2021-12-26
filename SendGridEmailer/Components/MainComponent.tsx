@@ -25,7 +25,7 @@ export const MainComponent = (props: Props) => {
     const setTemplateData = (templateData : sendGridTestData) => {
         const templatesToBeSaved = _.cloneDeep(selectedDynamicTemplate);
         const itemToBeChanged = _.find(templatesToBeSaved, {'substitutionKey' : templateData.substitutionKey});
-        
+        console.log(itemToBeChanged)
         itemToBeChanged!.exampleValue = templateData.exampleValue;
 
         setSelectedDynamicTemplate(templatesToBeSaved);
