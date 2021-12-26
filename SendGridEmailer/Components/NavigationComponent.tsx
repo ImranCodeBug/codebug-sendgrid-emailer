@@ -12,9 +12,7 @@ interface Props {
 export const NavigationComponent = (props: Props) => {
     return (
         <div className='row mt-2'>
-
             <div className='col'>
-
                 <button type="button" className="btn btn-outline-primary float-start" 
                     data-bs-toggle="tooltip" data-bs-placement="bottom" title="Previous"
                     disabled={!props.isPreviousActive} onClick={() => props.prevClicked()}>
@@ -32,7 +30,6 @@ export const NavigationComponent = (props: Props) => {
                     &nbsp;
                     Send</button>
             </div>
-
         </div>
     )
 }

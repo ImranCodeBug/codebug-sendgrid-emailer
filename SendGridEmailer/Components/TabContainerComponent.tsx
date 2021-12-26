@@ -6,8 +6,6 @@ import { SearchTemplateComponent } from './SearchTemplateComponent'
 import TemplateDetailsComponent from './TemplateDetailsComponent'
 import * as _ from 'lodash'
 import { EmailSummary } from './EmailSummary'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
     emailAddressText: string
