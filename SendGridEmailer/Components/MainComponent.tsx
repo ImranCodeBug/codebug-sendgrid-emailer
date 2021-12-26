@@ -6,6 +6,7 @@ import EmailAddressComponent from './EmailAddressComponent'
 import { TabContainerComponent } from './TabContainerComponent'
 import * as _ from 'lodash'
 import { NavigationComponent } from './NavigationComponent'
+import { sendEmail } from '../Services/EmailService'
 
 interface Props {
     emailAddressText: string
@@ -19,8 +20,8 @@ export const MainComponent = (props: Props) => {
     const [subject, setSubject] = React.useState<string | null>(null);
     const [isPreviousActive, setIsPreviousActive] = React.useState<boolean>(false);
     const [isNextActive, setIsNextActive] = React.useState<boolean>(false);
-    const [activeKey, setActiveKey] = React.useState(1)
-
+    const [activeKey, setActiveKey] = React.useState(1);
+    
     React.useEffect(() => {
         if (templateModel?.testData) {
             setSelectedDynamicTemplate(templateModel.testData!);
@@ -51,6 +52,11 @@ export const MainComponent = (props: Props) => {
         }
     }, [activeKey])
 
+    const sendOnClick = async() =>{
+        await sendEmail(props.apiKeyText, templateModel?.id!, props.emailAddressText,
+            'IC@deshibhai.com', subject, selectedDynamicTemplate);
+    }
+    
     const tabChanged = (eventKey: any, event: any) => {
         setActiveKey(eventKey as number)
     }
@@ -128,7 +134,8 @@ export const MainComponent = (props: Props) => {
                     isNextActive={isNextActive}
                     isPreviousActive={isPreviousActive}
                     prevClicked={prevClicked}
-                    nextClicked={nextClicked}></NavigationComponent>
+                    nextClicked={nextClicked}
+                    sendOnClicked={sendOnClick}></NavigationComponent>
                 : null}
         </div>
     )

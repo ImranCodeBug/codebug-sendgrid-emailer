@@ -2,14 +2,19 @@ import * as React from 'react'
 import { faChevronLeft, faChevronRight, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+
 interface Props {
     isPreviousActive : boolean,
     isNextActive : boolean,
     prevClicked : () => void
     nextClicked : () => void
+    sendOnClicked : () => void
 }
 
 export const NavigationComponent = (props: Props) => {
+    
+    
+
     return (
         <div className='row mt-2'>
             <div className='col'>
@@ -25,7 +30,8 @@ export const NavigationComponent = (props: Props) => {
                 </button>
             </div>
             <div className='col '>
-                <button type="button" className="btn btn-outline-success float-end" >
+                <button type="button" className="btn btn-outline-success float-end" 
+                    onClick={() => props.sendOnClicked()}>
                     <FontAwesomeIcon className='text-outline-success' icon={faPaperPlane} />
                     &nbsp;
                     Send</button>
