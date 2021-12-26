@@ -1,15 +1,16 @@
 import { sendGridTestData } from "../Models/TemplateModel";
+import { executeSendEmailAction } from "./DynamicsActionService";
 
-export const sendEmail = async(apiKey : string, templateId : string, 
+export const sendEmail = async(dynamicsUrl : string, apiKey : string, templateId : string, 
     recipient : string, from: string, subject : string | null, 
     dynamicData : sendGridTestData[] | null) =>{
     const dynamicTemplateData = convertTemplateDataToDynamicsTemplate(dynamicData);
-    console.log(dynamicTemplateData);
-
+    
     const emailDetails = createEmailDetails(templateId, recipient, from, subject,dynamicTemplateData);
 
-    console.log(emailDetails);
+    var response = await executeSendEmailAction(dynamicsUrl, apiKey, emailDetails);
 
+    
 
 
 
@@ -26,8 +27,6 @@ export const sendEmail = async(apiKey : string, templateId : string,
     //     return response.json()
     // })
 }
-
-const emailUrl = 'https://api.sendgrid.com/v3/mail/send';
 
 const createEmailDetails = (templateId : string, recipient : string, from: string,
     subject : string | null, dynamicData : any | null) => { 

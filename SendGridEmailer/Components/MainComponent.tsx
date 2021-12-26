@@ -10,7 +10,9 @@ import { sendEmail } from '../Services/EmailService'
 
 interface Props {
     emailAddressText: string
-    apiKeyText: string
+    apiKeyText: string,
+    senderEmailAddress : string,
+    dynamicsUrl : string
 }
 
 export const MainComponent = (props: Props) => {
@@ -53,8 +55,8 @@ export const MainComponent = (props: Props) => {
     }, [activeKey])
 
     const sendOnClick = async() =>{
-        await sendEmail(props.apiKeyText, templateModel?.id!, props.emailAddressText,
-            'IC@deshibhai.com', subject, selectedDynamicTemplate);
+        await sendEmail(props.dynamicsUrl, props.apiKeyText, templateModel?.id!, props.emailAddressText,
+            props.senderEmailAddress, subject, selectedDynamicTemplate);
     }
     
     const tabChanged = (eventKey: any, event: any) => {

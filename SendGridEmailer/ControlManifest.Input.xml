@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Codebug" constructor="SendGridEmailer" version="0.0.3" display-name-key="SendGrid Emailer" description-key="Send transactional email via SendGrid from Power Apps." control-type="standard" preview-image="img/preview.png">
+  <control namespace="Codebug" constructor="SendGridEmailer" version="0.0.6" display-name-key="SendGrid Emailer" description-key="Send transactional email via SendGrid from Power Apps." control-type="standard" preview-image="img/preview.png">
     <property name="Email" display-name-key="Email" description-key="Recipient Email Address" of-type="SingleLine.Email" usage="bound" required="true" />
     <resources>
       <code path="index.ts" order="1" />
@@ -9,5 +9,6 @@
     </resources>
     <property name="ApiKey" display-name-key="ApiKey" description-key="Send Grid Api Key" usage="input" required="true" of-type="SingleLine.Text" />
     <property name="DynamicsUrl" display-name-key="OrganizationUrl" description-key="URL for the dynamics 365 organization in the form of https://YOURORG.crm[x].dynamics.com" usage="input" required="true" of-type="SingleLine.Text" />
+    <property name="DefaultSenderAddress" display-name-key="DefaultSenderAddress" description-key="Defaule email address for the sender of the email." usage="input" required="true" of-type="SingleLine.Email" />
   </control>
 </manifest>

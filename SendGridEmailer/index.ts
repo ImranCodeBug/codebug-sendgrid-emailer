@@ -40,7 +40,12 @@ export class SendGridEmailer implements ComponentFramework.StandardControl<IInpu
 		if(context && context.parameters.ApiKey.raw && context.parameters.Email.raw){
 
 			ReactDom.render(React.createElement(MainComponent, 
-				{emailAddressText : context.parameters.Email.raw!, apiKeyText : context.parameters.ApiKey.raw!}), this._rootContainer);
+				{
+					emailAddressText : context.parameters.Email.raw!, 
+					apiKeyText : context.parameters.ApiKey.raw!,
+					senderEmailAddress : context.parameters.DefaultSenderAddress.raw!,
+					dynamicsUrl : context.parameters.DynamicsUrl.raw!
+				}), this._rootContainer);
 		}
 	}
 

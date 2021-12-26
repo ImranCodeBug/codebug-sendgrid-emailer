@@ -2,7 +2,6 @@ import * as React from 'react'
 import { faChevronLeft, faChevronRight, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
 interface Props {
     isPreviousActive : boolean,
     isNextActive : boolean,
@@ -12,9 +11,6 @@ interface Props {
 }
 
 export const NavigationComponent = (props: Props) => {
-    
-    
-
     return (
         <div className='row mt-2'>
             <div className='col'>
