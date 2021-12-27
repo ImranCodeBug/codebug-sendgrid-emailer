@@ -138,10 +138,14 @@ export const MainComponent = (props: Props) => {
         setEmailSendingSuccess(false);
     }
 
-    const searchTemplateWithId = async (templateId: string) => {
+    const searchTemplateWithId = async (templateId: string | null) => {
+        if(!templateId){
+            return;
+        }
+        
         cleanState();
         setTemplateSearchingInProgress(true);        
-        const response = await searchByTemplateId(templateId, props.apiKeyText);
+        const response = await searchByTemplateId(templateId!, props.apiKeyText);
         if (isTemplateModel(response)) {
             const result = response as templateModel
 

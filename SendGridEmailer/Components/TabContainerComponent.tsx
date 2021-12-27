@@ -10,7 +10,7 @@ import { EmailSummary } from './EmailSummary'
 interface Props {
     emailAddressText: string
     apiKey: string,
-    searchByTemplateId: (templateId: string) => void,
+    searchByTemplateId: (templateId: string | null) => void,
     templateSearchingInProgress: boolean
     templateModel: templateModel | null
     setTemplateData: (items: sendGridTestData) => void,
