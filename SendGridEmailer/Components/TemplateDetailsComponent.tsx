@@ -27,7 +27,7 @@ const TemplateDetailsComponent = (props: Props) => {
                     <input type="text" className='w-100 border rounded' placeholder="UpdatedAt" aria-label="UpdatedAt" aria-describedby="UpdatedAt" disabled value={props.templateModel.updatedAt} />
                 </div>
             </div>            
-            <TemplateContentComponent codeString={props.templateModel.htmlContent}></TemplateContentComponent>
+            {/* <TemplateContentComponent codeString={props.templateModel.htmlContent}></TemplateContentComponent> */}
             <ThumbnailComponent thumbnailUrl={props.templateModel.thumbnailUrl}></ThumbnailComponent>
         </div>
     )
