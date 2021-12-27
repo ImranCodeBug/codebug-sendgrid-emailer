@@ -17,7 +17,8 @@ interface Props {
     updateSubject: (items: sendGridTestData) => void,
     subject: string | null,
     activeKey : number
-    tabChanged : (eventKey: any, event: any) => void
+    tabChanged : (eventKey: any, event: any) => void,
+    sendOnClicked : () => void
 }
 
 export const TabContainerComponent = (props: Props) => {
@@ -43,7 +44,9 @@ export const TabContainerComponent = (props: Props) => {
             </Tab>
 
             <Tab eventKey="3" title="Send Email" disabled={props.templateModel === null}>
-                <EmailSummary emailAddress={props.emailAddressText} subject={props.subject}></EmailSummary>
+                <EmailSummary emailAddress={props.emailAddressText} 
+                subject={props.subject}
+                sendOnClicked={props.sendOnClicked}></EmailSummary>
             </Tab>
         </Tabs>
 

@@ -129,15 +129,15 @@ export const MainComponent = (props: Props) => {
                 updateSubject={updateSubjectState}
                 subject={subject}
                 activeKey={activeKey}
-                tabChanged={tabChanged}></TabContainerComponent>
+                tabChanged={tabChanged}
+                sendOnClicked={sendOnClick}></TabContainerComponent>
 
             {templateModel ?
                 <NavigationComponent
                     isNextActive={isNextActive}
                     isPreviousActive={isPreviousActive}
                     prevClicked={prevClicked}
-                    nextClicked={nextClicked}
-                    sendOnClicked={sendOnClick}></NavigationComponent>
+                    nextClicked={nextClicked}></NavigationComponent>
                 : null}
         </div>
     )

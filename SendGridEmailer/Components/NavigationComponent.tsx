@@ -6,31 +6,23 @@ interface Props {
     isPreviousActive : boolean,
     isNextActive : boolean,
     prevClicked : () => void
-    nextClicked : () => void
-    sendOnClicked : () => void
+    nextClicked : () => void    
 }
 
 export const NavigationComponent = (props: Props) => {
     return (
         <div className='row mt-2'>
-            <div className='col'>
-                <button type="button" className="btn btn-outline-primary float-start" 
+            <div className='col align-self-center'>
+                <button type="button" className="btn btn-outline-primary" 
                     data-bs-toggle="tooltip" data-bs-placement="bottom" title="Previous"
                     disabled={!props.isPreviousActive} onClick={() => props.prevClicked()}>
                     <FontAwesomeIcon className='text-outline-primary' icon={faChevronLeft} />
                 </button>
-                <button type="button" className="btn btn-outline-primary float-start ms-1" 
+                <button type="button" className="btn btn-outline-primary" 
                     data-bs-toggle="tooltip" data-bs-placement="bottom" title="Next"
                     disabled={!props.isNextActive} onClick={() => props.nextClicked()}>
                     <FontAwesomeIcon className='text-outline-primary' icon={faChevronRight} />
                 </button>
-            </div>
-            <div className='col '>
-                <button type="button" className="btn btn-outline-success float-end" 
-                    onClick={() => props.sendOnClicked()}>
-                    <FontAwesomeIcon className='text-outline-success' icon={faPaperPlane} />
-                    &nbsp;
-                    Send</button>
             </div>
         </div>
     )
