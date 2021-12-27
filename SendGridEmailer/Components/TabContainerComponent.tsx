@@ -18,7 +18,9 @@ interface Props {
     subject: string | null,
     activeKey : number
     tabChanged : (eventKey: any, event: any) => void,
-    sendOnClicked : () => void
+    sendOnClicked : () => void,
+    emailSendingInProgress : boolean,
+    cleanState : () => void    
 }
 
 export const TabContainerComponent = (props: Props) => {
@@ -28,7 +30,8 @@ export const TabContainerComponent = (props: Props) => {
             onSelect={props.tabChanged} >
             <Tab eventKey="1" title="Search">
                 <SearchTemplateComponent searchByTemplateId={props.searchByTemplateId}
-                    templateSearchingInProgress={props.templateSearchingInProgress}></SearchTemplateComponent>
+                    templateSearchingInProgress={props.templateSearchingInProgress}
+                    cleanState={props.cleanState}></SearchTemplateComponent>
 
                 {props.templateModel ?
                     <TemplateDetailsComponent templateModel={props.templateModel!}></TemplateDetailsComponent>
@@ -46,7 +49,8 @@ export const TabContainerComponent = (props: Props) => {
             <Tab eventKey="3" title="Send Email" disabled={props.templateModel === null}>
                 <EmailSummary emailAddress={props.emailAddressText} 
                 subject={props.subject}
-                sendOnClicked={props.sendOnClicked}></EmailSummary>
+                sendOnClicked={props.sendOnClicked}
+                emailSendingInProgress={props.emailSendingInProgress}></EmailSummary>
             </Tab>
         </Tabs>
 

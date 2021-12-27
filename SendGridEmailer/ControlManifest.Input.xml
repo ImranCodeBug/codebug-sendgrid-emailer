@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Codebug" constructor="SendGridEmailer" version="0.0.11" display-name-key="SendGrid Emailer" description-key="Send transactional email via SendGrid from Power Apps." control-type="standard" preview-image="img/preview.png">
+  <control namespace="Codebug" constructor="SendGridEmailer" version="0.0.12" display-name-key="SendGrid Emailer" description-key="Send transactional email via SendGrid from Power Apps." control-type="standard" preview-image="img/preview.png">
     <property name="Email" display-name-key="Email" description-key="Recipient Email Address" of-type="SingleLine.Email" usage="bound" required="true" />
     <resources>
       <code path="index.ts" order="1" />

@@ -7,6 +7,7 @@ import { TabContainerComponent } from './TabContainerComponent'
 import * as _ from 'lodash'
 import { sendEmail } from '../Services/EmailService'
 import { NotificationComponent, notificationType } from './NotificationComponent'
+import { responseType } from '../Models/FunctionResponse'
 
 interface Props {
     emailAddressText: string
@@ -26,6 +27,7 @@ export const MainComponent = (props: Props) => {
     const [activeKey, setActiveKey] = React.useState(1);
     const [emailSendingInProgress, setEmailSendingInProgress] = React.useState<boolean>(false);
     const [emailSendingError, setEmailSendingError] = React.useState<boolean>(false);
+    const [emailSendingSuccess, setEmailSendingSuccess] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         if (templateModel?.testData) {
@@ -58,8 +60,19 @@ export const MainComponent = (props: Props) => {
     }, [activeKey])
 
     const sendOnClick = async () => {
-        await sendEmail(props.dynamicsUrl, props.apiKeyText, templateModel?.id!, props.emailAddressText,
+        setEmailSendingInProgress(true);
+
+        var response = await sendEmail(props.dynamicsUrl, props.apiKeyText, templateModel?.id!, props.emailAddressText,
             props.senderEmailAddress, subject, selectedDynamicTemplate);
+        
+        setEmailSendingInProgress(false);
+
+        if(response.status !== responseType.Success){
+            setEmailSendingError(true);
+        }
+        else{
+            setEmailSendingSuccess(true);
+        }
     }
 
     const tabChanged = (eventKey: any, event: any) => {
@@ -122,6 +135,7 @@ export const MainComponent = (props: Props) => {
         setActiveKey(1);
         setEmailSendingInProgress(false);
         setEmailSendingError(false);
+        setEmailSendingSuccess(false);
     }
 
     const searchTemplateWithId = async (templateId: string) => {
@@ -152,13 +166,19 @@ export const MainComponent = (props: Props) => {
                 subject={subject}
                 activeKey={activeKey}
                 tabChanged={tabChanged}
-                sendOnClicked={sendOnClick}></TabContainerComponent>
+                sendOnClicked={sendOnClick}
+                emailSendingInProgress={emailSendingInProgress}
+                cleanState={cleanState}></TabContainerComponent>
+
             {templateSearchError ?
                 <NotificationComponent notificationType={notificationType.Error} notificationText='Error while searching the template via id. Please make sure the template with the specified id exists in Sendgrid' ></NotificationComponent>
                 : null}
 
             {emailSendingError ?
                 <NotificationComponent notificationType={notificationType.Error} notificationText='Error while sending the email. Please check the plugin tracelog or the browser console for more details' ></NotificationComponent>
+                : null}
+            {emailSendingSuccess ?
+                <NotificationComponent notificationType={notificationType.Success} notificationText='Successfully send the email.' ></NotificationComponent>
                 : null}
         </div>
     )
