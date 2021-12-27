@@ -22,21 +22,21 @@ const getStyleDetails = (notifType: notificationType): styleDetails => {
         return {
             iconType: faExclamationTriangle,
             iconColor: "fs-4 text-warning",
-            alertColor: "p-2 alert alert-warning"
+            alertColor: "p-2 alert alert-warning mt-2"
         }
     }
     else if (notifType === notificationType.Success) {        
         return {
             iconType: faCheckCircle,
             iconColor: "fs-4 text-success",
-            alertColor: "p-2 alert alert-success"
+            alertColor: "p-2 alert alert-success mt-2"
         }
     }
     else {        
         return {
             iconType: faTimes,
             iconColor: "fs-4 text-danger",
-            alertColor: "p-2 alert alert-danger"
+            alertColor: "p-2 alert alert-danger mt-2"
         }
     }
 }
@@ -47,7 +47,7 @@ export const NotificationComponent = (props: Props) => {
         <div className={alertColor} role="alert">
             <FontAwesomeIcon className={iconColor} icon={iconType} />
             &nbsp;&nbsp;
-            {props.notificationText}
+            <span className=''>{props.notificationText}</span>
 
         </div>
     )
