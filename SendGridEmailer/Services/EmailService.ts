@@ -5,33 +5,17 @@ export const sendEmail = async(dynamicsUrl : string, apiKey : string, templateId
     recipient : string, from: string, subject : string | null, 
     dynamicData : sendGridTestData[] | null) =>{
     const dynamicTemplateData = convertTemplateDataToDynamicsTemplate(dynamicData);
-    
-    const emailDetails = createEmailDetails(templateId, recipient, from, subject,dynamicTemplateData);
+        
+    const emailDetails = createEmailDetails(templateId, recipient, from, subject, dynamicTemplateData);
 
-    var response = await executeSendEmailAction(dynamicsUrl, apiKey, emailDetails);
-
-    
-
-
-
-
-    // await fetch(emailUrl, {
-    //     method : 'POST',
-    //     headers : {
-    //         Authorization : `Bearer ${apiKey}`
-    //     },
-    //     body : JSON.stringify(createEmailDetails(dynamicsTemplateData))
-    // })
-    // .then(response => {
-    //     console.log(response);
-    //     return response.json()
-    // })
+    return await executeSendEmailAction(dynamicsUrl, apiKey, emailDetails);
 }
 
 const createEmailDetails = (templateId : string, recipient : string, from: string,
     subject : string | null, dynamicData : any | null) => { 
     const emailDetails : any =   {
-    personalizations : [
+    personalizations : 
+    [
       {
         to: [
           {
@@ -47,7 +31,7 @@ const createEmailDetails = (templateId : string, recipient : string, from: strin
   }
 
   if(subject){
-      emailDetails.subject = subject!
+      emailDetails.personalizations[0].subject = subject!
   }
 
   if(dynamicData){
