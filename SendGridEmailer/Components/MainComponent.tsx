@@ -5,7 +5,6 @@ import { isTemplateModel } from '../Services/UtilService'
 import EmailAddressComponent from './EmailAddressComponent'
 import { TabContainerComponent } from './TabContainerComponent'
 import * as _ from 'lodash'
-import { NavigationComponent } from './NavigationComponent'
 import { sendEmail } from '../Services/EmailService'
 
 interface Props {
@@ -119,7 +118,7 @@ export const MainComponent = (props: Props) => {
         setTemplateSearchingInProgress(false);
     }
     return (
-        <div className='container-fluid'>
+        <div className='container-fluid my-3'>
             <EmailAddressComponent emailAddress={props.emailAddressText}></EmailAddressComponent>
             <TabContainerComponent emailAddressText={props.emailAddressText} apiKey={props.apiKeyText}
                 searchByTemplateId={searchTemplateWithId}
@@ -131,14 +130,6 @@ export const MainComponent = (props: Props) => {
                 activeKey={activeKey}
                 tabChanged={tabChanged}
                 sendOnClicked={sendOnClick}></TabContainerComponent>
-
-            {templateModel ?
-                <NavigationComponent
-                    isNextActive={isNextActive}
-                    isPreviousActive={isPreviousActive}
-                    prevClicked={prevClicked}
-                    nextClicked={nextClicked}></NavigationComponent>
-                : null}
         </div>
     )
 }
