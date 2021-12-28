@@ -36,6 +36,3 @@ For the above two reasons this control accepts a parameter for Dynamics' organis
 -   A solution containing both the control and the action.
 -   A solution containing only the Action
 -   A solution containing the PCF control.
-
-
-
